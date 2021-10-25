@@ -2,20 +2,41 @@ import { parseRequestUrl } from '../utils';
 import { getProduct } from '../api';
 import Rating from '../components/Rating';
 
+
+
+
 const ProductScreen = {
 
-  after_render: ()=> {
-    const request = parseRequestUrl();
+  useState: (defaultValue) => {
+
+    let value = defaultValue;
+    function getValue() {
+      return value;
+    }
+
+    function setValue(newValue) {
+      value = newValue;
+      render();
+    }
+    return [getValue, setValue];
+  },
+
+  after_render: () => {
+
     document.getElementById('add-button').addEventListener('click', ()=> {
+      const request = parseRequestUrl();
+      console.log(request.id)
+     
       document.location.hash= `/cart/${request.id}`;
     });
   },
   render: async () => {
     const request = parseRequestUrl();
-
     const product = await getProduct(request.id);
+    const [counter, setCounter] = useState(0);
 
-    console.log('ÜRÜN',product)
+    console.log(useState())
+
     if (product.error) {
       return (`<div class="test">${product.error}</div>`)
     }
@@ -54,10 +75,10 @@ const ProductScreen = {
               </li>
               <li>
                 Status:
-                  ${product.countIntock > 0 ? `<span class="success">In Stock</span>` : `<span class="error">Unavailable</span>`}
+                  ${product.countInstock > 0 ? `<span class="success">In Stock</span>` : `<span class="error">Unavailable</span>`}
               </li>
               <li>
-                <button id="add-button" class="fw primary">Add to Cart</button>
+                <button id="add-button" class="${product.countInstock === 0 ? "disabled" : ""} fw primary">${product.countInstock > 0 ? "Add to Cart" : "Out of Stock"}</button>
               </li>
             </ul>
           </div>

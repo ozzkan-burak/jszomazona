@@ -70,8 +70,16 @@ footer {
   align-items: center;
   color: #fff;
 }
-/* Products */
+.disabled {
+  color: red;
+  background-color:#fbeabe !important;
+  cursor: not-allowed;
+}
+.none {
+  display: hidden;
+}
 
+/* Products */
 .product-list {
   display: flex;
   flex-wrap: wrap;
