@@ -2,7 +2,9 @@ import express from "express";
 import cors from "cors";
 
 import data from "./data.js";
+import connectDB from "./config/db.js";
 
+connectDB();
 
 const app = express();
 
@@ -20,7 +22,7 @@ app.get('/api/products/:id', (req, res) => {
     res.send(product);
   } else {
     res.status(404).send({message: 'Ürün bulunamadı!'})
-  }
+  } 
 });
 
 app.listen(PORT, ()=> {
