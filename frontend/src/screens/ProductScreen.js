@@ -7,19 +7,19 @@ import Rating from '../components/Rating';
 
 const ProductScreen = {
 
-  useState: (defaultValue) => {
+  // useState: (defaultValue) => {
 
-    let value = defaultValue;
-    function getValue() {
-      return value;
-    }
+  //   let value = defaultValue;
+  //   function getValue() {
+  //     return value;
+  //   }
 
-    function setValue(newValue) {
-      value = newValue;
-      render();
-    }
-    return [getValue, setValue];
-  },
+  //   function setValue(newValue) {
+  //     value = newValue;
+  //     render();
+  //   }
+  //   return [getValue, setValue];
+  // },
 
   after_render: () => {
 
@@ -33,9 +33,9 @@ const ProductScreen = {
   render: async () => {
     const request = parseRequestUrl();
     const product = await getProduct(request.id);
-    const [counter, setCounter] = useState(0);
+    // const [counter, setCounter] = useState(0);
 
-    console.log(useState())
+    // console.log(useState())
 
     if (product.error) {
       return (`<div class="test">${product.error}</div>`)
