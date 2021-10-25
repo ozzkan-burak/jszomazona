@@ -11,15 +11,11 @@ const HomeScreen = {
       },
     });
 
-    console.log(res.statusText);
-
     if(!res || res.statusText !== 'OK') {
       return `<div>Data alınırken hata oluştu</div>`;
     };
 
     const products = res.data;
-
-    console.log(products)
 
     return `
       <ul class="product-list">
@@ -30,7 +26,7 @@ const HomeScreen = {
                 <img src=${product.image} alt=${product.name} />
               </a>
               <div class="product-name">
-                <a href="/#/product/1">
+                <a href="/#/product/${product._id}">
                   ${product.name}
                 </a>
               </div>

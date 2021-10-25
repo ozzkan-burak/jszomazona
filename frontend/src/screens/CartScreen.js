@@ -1,3 +1,4 @@
+import { logPlugin } from "@babel/preset-env/lib/debug";
 import { getProduct } from "../api";
 import { getCartItems, setCartItems } from "../localStorage";
 import { parseRequestUrl } from "../utils";
@@ -28,17 +29,18 @@ const CartScreen = {
         name: product.name,
         image: product.image,
         price: product.price,
-        countInStock: product.countınStock,
+        countInStock: product.countInstock,
         qty:1,
       })
     }
     const cartItems = getCartItems()
+
     return `
       <div class="content cart">
         <div class="cart-list">
           <ul class="cart-list-container">
             <li>
-              <h3>Alışveriş Sepet</h3>
+              <h3>Alışveriş Sepeti</h3>
               <div>Fiyat</div>
               ${
                 cartItems.length === 0 ? 
@@ -56,7 +58,9 @@ const CartScreen = {
                       </div>
                       <div>
                         Adet: <select class="qty-select" id="${item.product}">
-                        <option value="1">1</option>
+                       ${
+                         [...Array(item.countInstock).keys()].map(x => console.log(item.countInstock))
+                       }
                         </select>
                         <button type="button" class="delete-button" id="${item.product}">Sil</button>
                       </div>
