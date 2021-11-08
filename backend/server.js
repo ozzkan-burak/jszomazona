@@ -3,6 +3,7 @@ import cors from "cors";
 
 import data from "./data.js";
 import connectDB from "./config/db.js";
+import userRouter from "./router/userRouter.js";
 
 connectDB();
 
@@ -10,7 +11,7 @@ const app = express();
 
 app.use(cors());
 
-const PORT = process.env.PORT || 5000;
+app.use('/api/users', userRouter);
 
 app.get('/api/products', (req, res) => {
   res.send(data.products);
@@ -24,6 +25,8 @@ app.get('/api/products/:id', (req, res) => {
     res.status(404).send({message: 'Ürün bulunamadı!'})
   } 
 });
+
+const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, ()=> {
   console.log(`Server ${PORT} portunda çalışıyor...`);
