@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-
+import bodyParser from "body-parser";
 import data from "./data.js";
 import connectDB from "./config/db.js";
 import userRouter from "./router/userRouter.js";
@@ -10,7 +10,7 @@ connectDB();
 const app = express();
 
 app.use(cors());
-
+app.use(bodyParser.json());
 app.use('/api/users', userRouter);
 
 app.get('/api/products', (req, res) => {
@@ -27,6 +27,11 @@ app.get('/api/products/:id', (req, res) => {
 });
 
 const PORT = process.env.PORT || 5001;
+
+app.use((err,req, res,next)=>{
+  const status = err.name && err.name == 'ValidationError' ? 400 : 500;
+  res.status(status).send({message: err.message});
+})
 
 app.listen(PORT, ()=> {
   console.log(`Server ${PORT} portunda çalışıyor...`);
