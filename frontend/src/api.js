@@ -20,7 +20,7 @@ export const getProduct = async (id) => {
   }
 }
 
-export const signin = async (data) => {
+export const signin = async ({email,password}) => {
   try {
     const response = await axios({
       url:`${apiUrl}/api/users/signin`,

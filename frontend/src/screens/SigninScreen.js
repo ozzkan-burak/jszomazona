@@ -9,8 +9,9 @@ const SigninScreen = {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value
       });
+      
       if(data.error) {
-        alert(data.error);
+        console.log(data.error);
       } else {
         document.location.hash = "/";
       }
@@ -22,7 +23,7 @@ const SigninScreen = {
         <form id="signin-form">
           <ul class="form-items">
             <li>
-              <h1>Sign-in</h1>
+              <h1>Giriş Yap</h1>
             </li>
             <li>
               <label for="email">Email</label>
@@ -30,7 +31,7 @@ const SigninScreen = {
             </li>
             <li>
               <label for="password">Şifre</label>
-              <input type="password" name="password" id="password" placeholder="şifre" required>
+              <input type="password" name="password" id="password" placeholder="" required>
             </li>
             <li>
               <button type="submit" class="primary">Giriş Yap</button>
