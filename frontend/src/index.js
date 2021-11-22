@@ -17,13 +17,13 @@ const router = async () => {
   const request = parseRequestUrl();
   const parseUrl = (request.resource ? `/${request.resource}` : '/') + 
   (request.id ? '/:id' : '') + 
-  (request.verb ? `/${request.verb}` : '')
+  (request.verb ? `/${request.verb}` : '');
+
   const screen = routes[parseUrl] ? routes[parseUrl] : Error404Screen
-  
-  console.log('screen',screen)
+
   const main = document.getElementById('main-container');
   main.innerHTML = await screen.render();
-  await screen.after_render();
+  if (screen.after_render) await screen.after_render();
 };
 
 window.addEventListener('load', router);

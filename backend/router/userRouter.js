@@ -8,10 +8,10 @@ const userRouter = express.Router();
 userRouter.get('/createadmin', expressAsyncHandler(async (req, res) => {
   try {
     const user = new User({
-      name: 'admin',
-      email: "admin@jszomazona.com",
+      name: 'user',
+      email: "user@jszomazona.com",
       password: "jszomazona",
-      isAdmin: true
+      isAdmin: false
     });
     const createdUser = await user.save();
     res.send(createdUser);
