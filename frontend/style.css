@@ -38,7 +38,50 @@ button {
  button.primary {
    background-color: #f0c040;
  }
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  z-index: 1000;
+}
+.overlay > div {
+  background-color: rgba(255, 255, 255, .8);
+  color: #000;
+  border-radius: .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 2rem;
+  max-width: 60rem;
+  min-width: 40rem;
+}
 
+.overlay > div > * {
+  margin: 2rem;
+}
+.overlay > div > button {
+  background-color: #f0c040;
+  color: #000;
+  border: none;
+  border-radius: .5rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  min-width: 20rem;
+  border: 1px solid #000;
+}
+
+.overlay.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
 .grid-container {
   display: grid;
   grid-template-areas:
