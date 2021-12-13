@@ -3,8 +3,10 @@ import Error404Screen from "./screens/Error404Screen.js";
 import HomeScreen from "./screens/HomeScreen.js";
 import ProductScreen from "./screens/ProductScreen.js";
 import SigninScreen from "./screens/SigninScreen.js";
+import RegisterScreen from "./screens/RegisterScreen.js";
 import { hideLoading, parseRequestUrl, showLoading } from "./utils.js";
 import  Header  from "./components/Header.js";
+
 
 const routes = {
   '/': HomeScreen,
@@ -12,6 +14,7 @@ const routes = {
   '/cart/:id': CartScreen,
   '/cart': CartScreen,
   '/signin': SigninScreen,
+  '/register': RegisterScreen,
 }
 
 const router = async () => {
