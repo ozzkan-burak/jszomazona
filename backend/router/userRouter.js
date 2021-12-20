@@ -1,7 +1,7 @@
 import express from 'express';
 import User from '../models/userModel';
 import expressAsyncHandler from 'express-async-handler';
-import { generateToken } from '../util';
+import { generateToken, isAuth } from '../util';
 
 const userRouter = express.Router();
 
@@ -53,6 +53,29 @@ userRouter.post("/register", expressAsyncHandler(async (req, res) => {
       email: createdUser.email,
       isAdmin: createdUser.isAdmin,
       token: generateToken(createdUser),
+    })
+  }
+}));
+
+userRouter.put('/:id', isAuth, expressAsyncHandler(async (req, res) => {
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+  if (!user) {
+    return res.status(404).send({ message: "User Not Found" });
+  } else {
+
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    user.password = req.body.password || user.password;
+
+    const updatedUser = await user.save();
+
+    res.send({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser),
     })
   }
 }));
