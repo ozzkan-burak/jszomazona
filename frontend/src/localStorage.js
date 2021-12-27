@@ -34,7 +34,7 @@ export const getShipping = () => {
   const shipping = localStorage.getItem('shipping') ?
     JSON.parse(localStorage.getItem('shipping')) :
     {
-      adress: '', 
+      address: '', 
       city: '', 
       postalCode: '', 
       country: ''
@@ -44,10 +44,10 @@ export const getShipping = () => {
 }
 
 export const setShipping = ({
-  adress = '', 
-  city = '', 
-  postalCode = '', 
-  country = ''
+  address = "", 
+  city = "", 
+  postalCode = "", 
+  country = ""
 }) => {
-  localStorage.setItem('shipping', JSON.stringify({adress, city, postalCode, country}));
+  localStorage.setItem('shipping', JSON.stringify({address, city, postalCode, country}));
 }

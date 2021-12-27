@@ -1,66 +1,58 @@
-import { update } from "../api";
-import { getUserInfo, setUserInfo, clearUser, getShipping } from "../localStorage";
+import { getUserInfo, getShipping, setShipping } from "../localStorage";
 import { hideLoading, showLoading, showMessage } from "../utils";
+import CheeckoutSteps from "../components/CheckoutSteps";
 
 
 const ShippingScreen = {
   after_render: () => {
-    document.getElementById('signout-button').addEventListener('click', () => {
-      clearUser();
-      document.location.hash = '/';
-    });
-    document.getElementById("profile-form")
+
+    document.getElementById("shipping-form")
       .addEventListener("submit", async (e) => {
         e.preventDefault();
-        showLoading();
-        const data = await update({
-          name: document.getElementById("name").value,
-          email: document.getElementById("email").value,
-          password: document.getElementById("password").value
+        setShipping({
+          address: document.getElementById("address").value,
+          city: document.getElementById("city").value,
+          country: document.getElementById("country").value,
+          postalCode: document.getElementById("postalCode").value,
         });
-        hideLoading();
-        if (data.error) {
-          showMessage(data.error);
-        } else {
-          setUserInfo(data);
-          document.location.hash = "/";
-        }
-      })
+        document.location.hash = '/payment';
+      });
   },
   render: () => {
-
-    const { name, email } = getUserInfo();
+    const { name } = getUserInfo();
 
     if (!name) {
       document.location.hash = "/";
     }
 
-    const { adress, city, postalCode, country } = getShipping();
+    const { address, city, postalCode, country } = getShipping();
 
     return `
+    ${CheeckoutSteps.render({step1: true, step2: true})}
       <div class="form-container">
         <form id="shipping-form">
           <ul class="form-items">
             <li>
-              <h1>Profil</h1>
+              <h1>Shipping</h1>
             </li>
             <li>
-              <label for="email">Email</label>
-              <input type="email" name="email" id="email" placeholder="Email" value="${email}" required>
+              <label for="address">Adres</label>
+              <input type="text" name="address" id="address" placeholder="Adres" value="${address}" required>
             </li>
             <li>
-              <label for="name">İsim</label>
-              <input type="name" name="name" id="name" placeholder="İsim" value="${name}" required>
+              <label for="city">Şehir</label>
+              <input type="text" name="city" id="city" placeholder="Şehir" value="${city}" required>
             </li>
             <li>
-              <label for="password">Şifre</label>
-              <input type="password" name="password" id="password" placeholder="" required>
+              <label for="postalCode">Posta Kodu</label>
+              <input type="name" name="name" id="postalCode" placeholder="Posta Kodu" value="${postalCode}" required>
             </li>
             <li>
-              <button type="submit" class="primary">Güncelle</button>
+              <label for="country">Ülke</label>
+              <input type="text" name="country" id="country" placeholder="Ülke" value="${country}" required>
             </li>
             <li>
-            <button type="button" id="signout-button" class="primary">Çıkış yap</button>
+            <button type="submit" class="primary">Sonraki</button>
           </li>
           </ul>
         </form>
