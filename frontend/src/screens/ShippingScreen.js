@@ -1,9 +1,9 @@
 import { update } from "../api";
-import { getUserInfo, setUserInfo, clearUser } from "../localStorage";
+import { getUserInfo, setUserInfo, clearUser, getShipping } from "../localStorage";
 import { hideLoading, showLoading, showMessage } from "../utils";
 
 
-const ProfileScreen = {
+const ShippingScreen = {
   after_render: () => {
     document.getElementById('signout-button').addEventListener('click', () => {
       clearUser();
@@ -35,9 +35,11 @@ const ProfileScreen = {
       document.location.hash = "/";
     }
 
+    const { adress, city, postalCode, country } = getShipping();
+
     return `
       <div class="form-container">
-        <form id="profile-form">
+        <form id="shipping-form">
           <ul class="form-items">
             <li>
               <h1>Profil</h1>
@@ -67,4 +69,4 @@ const ProfileScreen = {
   }
 }
 
-export default ProfileScreen;
+export default ShippingScreen;

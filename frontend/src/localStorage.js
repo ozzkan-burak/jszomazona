@@ -20,8 +20,34 @@ export const setUserInfo = ({
   localStorage.setItem('userInfo', JSON.stringify({_id, name, email, password, token, isAdmin}));
 };
 
+export const clearUser = () => {
+  localStorage.removeItem('userInfo');
+}
+
 export const getUserInfo = () => {
   return localStorage.getItem('userInfo') ?
     JSON.parse(localStorage.getItem('userInfo')) :
     {name: '', email: '', password: ''};
+}
+
+export const getShipping = () => {
+  const shipping = localStorage.getItem('shipping') ?
+    JSON.parse(localStorage.getItem('shipping')) :
+    {
+      adress: '', 
+      city: '', 
+      postalCode: '', 
+      country: ''
+    };
+
+    return shipping;
+}
+
+export const setShipping = ({
+  adress = '', 
+  city = '', 
+  postalCode = '', 
+  country = ''
+}) => {
+  localStorage.setItem('shipping', JSON.stringify({adress, city, postalCode, country}));
 }
