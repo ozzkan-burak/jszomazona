@@ -32,7 +32,7 @@ const ShippingScreen = {
         <form id="shipping-form">
           <ul class="form-items">
             <li>
-              <h1>Shipping</h1>
+              <h1>Kargo Bilgileri</h1>
             </li>
             <li>
               <label for="address">Adres</label>

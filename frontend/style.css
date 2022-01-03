@@ -380,3 +380,38 @@ footer {
   color: #f08000;
   border-top-color:#f08000
 }
+
+/* Order */
+
+.order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.order h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.order .cart-list-container {
+  padding: 0;
+}
+
+.order-info {
+  flex: 3 1 60rem;
+}
+
+.order-info > div {
+  border-bottom: 0.1rem #c0c0c0 solid;
+  padding: 1rem;
+  border-radius: .5rem;
+  background-color: #fcfcfc;
+  margin: 1rem;
+}
+
+.order-action {
+  flex: 1 1 20rem;
+}
