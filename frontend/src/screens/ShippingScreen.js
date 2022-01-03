@@ -1,5 +1,4 @@
 import { getUserInfo, getShipping, setShipping } from "../localStorage";
-import { hideLoading, showLoading, showMessage } from "../utils";
 import CheeckoutSteps from "../components/CheckoutSteps";
 
 
