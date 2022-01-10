@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import data from "./data.js";
 import connectDB from "./config/db.js";
 import userRouter from "./router/userRouter.js";
+import orderRouter from "./router/orderRouter.js";
 
 connectDB();
 
@@ -12,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/users', userRouter);
-
+app.use('/api/orders',orderRouter)
 app.get('/api/products', (req, res) => {
   res.send(data.products);
 });
