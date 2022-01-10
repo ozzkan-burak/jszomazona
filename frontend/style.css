@@ -21,6 +21,10 @@ body {
 button {
   cursor: pointer;
 }
+ul{
+  list-style: none;
+  padding:0;
+}
 
  input,
  button {
@@ -385,33 +389,52 @@ footer {
 
 .order {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
   padding: 1rem;
+  justify-content: space-between;
 }
-
 .order h2 {
-  font-size: 2rem;
   margin: 0;
+  padding-bottom: 1rem;
+  font-size: 2rem;
 }
-
 .order .cart-list-container {
   padding: 0;
 }
-
 .order-info {
   flex: 3 1 60rem;
 }
-
 .order-info > div {
-  border-bottom: 0.1rem #c0c0c0 solid;
-  padding: 1rem;
-  border-radius: .5rem;
+  border: 0.1rem #c0c0c0 solid;
+  border-radius: 0.5rem;
   background-color: #fcfcfc;
+  padding: 1rem;
   margin: 1rem;
 }
-
+.order-info > div:first-child {
+  margin-top: 0;
+}
+.order-info > div > div {
+  padding: 1rem;
+}
 .order-action {
   flex: 1 1 20rem;
+  border: 0.1rem #c0c0c0 solid;
+  border-radius: 0.5rem;
+  background-color: #fcfcfc;
+  padding: 1rem;
+}
+.order-action > ul {
+  padding: 0;
+  list-style-type: none;
+}
+.order-action li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.order-action .total {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c04000;
 }
