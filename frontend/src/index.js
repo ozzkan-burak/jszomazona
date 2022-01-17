@@ -8,10 +8,9 @@ import RegisterScreen from "./screens/RegisterScreen.js";
 import ShippingScreen from "./screens/ShippingScreen.js";
 import PaymentScreen from "./screens/PaymentScreen.js";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen.js";
+import OrderScreen from "./screens/OrderScreen.js";
 import { hideLoading, parseRequestUrl, showLoading } from "./utils.js";
 import  Header  from "./components/Header.js";
-
-
 
 
 const routes = {
@@ -25,6 +24,7 @@ const routes = {
   '/shipping': ShippingScreen,
   '/payment': PaymentScreen,
   '/placeorder': PlaceOrderScreen,
+  '/order': OrderScreen,
 }
 
 const router = async () => {
