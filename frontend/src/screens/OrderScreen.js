@@ -19,6 +19,8 @@ const OrderScreen = {
       totalPrice,
       isDelivered,
       deliveredAt,
+      isPaid,
+      paidAt,
     } = getOrders(request.id);
 
 
@@ -41,6 +43,7 @@ const OrderScreen = {
         <div>
           Payment Method : ${payment.paymentMethod}
         </div>
+        ${isPaid ? `<div class="success">Delivered at ${paidAt}</div>` : `<div class="warning">Not paid yet</div>`}
       </div>
       <div>
         <ul class="cart-list-container">
